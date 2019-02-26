@@ -1,0 +1,22 @@
+<mat-toolbar color="primary">
+  <span>Leave Calendar</span>
+  <span class="fill-remaining-space"></span>
+  <div *ngIf="loggedIn; else login">
+    <span>
+      <button mat-button [matMenuTriggerFor]="leaveMenu">Leave</button>
+      <mat-menu #leaveMenu="matMenu">
+        <button routerLink="/submitleave" routerLinkActive="active-link" mat-menu-item>Submit Leave</button>
+        <button routerLink="/cancelleave" routerLinkActive="active-link" mat-menu-item>Cancel Leave</button>
+      </mat-menu>
+      </span>
+      <span>
+        <button routerLink="/viewcalendar" routerLinkActive="active-link" mat-button>View Calendar</button>
+      </span>
+  </div>
+  <ng-template #login>
+    <span>
+      <button mat-button>Login</button>
+      <button mat-button>Register</button>
+    </span>
+  </ng-template>
+</mat-toolbar>

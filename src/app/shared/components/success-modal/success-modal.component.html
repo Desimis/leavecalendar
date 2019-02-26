@@ -1,0 +1,6 @@
+<div class="modalContainer">
+  <mat-card color="accent" *ngIf="response && response.success; else failure">Submission success!</mat-card>
+  <ng-template #failure>
+    <mat-card color="warn" *ngIf="response && response.success == false">Submission failed: {{response.reason}}</mat-card>
+  </ng-template>
+</div>
