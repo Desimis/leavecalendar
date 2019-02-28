@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { LeaveService } from 'src/app/services/leave-service.service';
+import { LeaveService } from 'src/app/services/state-services/leave-service.service';
 import { LeaveSubmission } from 'src/app/models/leave-submission';
 import { BaseResponse } from 'src/app/models/base-response';
 import { Router } from '@angular/router';
-import { SubmissionStateService } from 'src/app/services/submission-state.service';
+import { SubmissionStateService } from 'src/app/services/state-services/submission-state.service';
 
 @Component({
   selector: 'app-submit-leave',

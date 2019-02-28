@@ -6,7 +6,20 @@ import { NavBarComponent } from './components/nav-bar/nav-bar.component';
 import { FooterNavComponent } from './components/footer-nav/footer-nav.component';
 import { LoaderComponent } from './components/loader/loader.component';
 
-import { MatToolbarModule, MatMenuModule, MatButtonModule, MatCardModule, MatExpansionModule, MatTabsModule, MatGridListModule } from '@angular/material';
+import { 
+  MatToolbarModule, 
+  MatMenuModule, 
+  MatButtonModule, 
+  MatCardModule, 
+  MatExpansionModule, 
+  MatTabsModule, 
+  MatGridListModule, 
+  MatFormFieldModule, 
+  MatDatepickerModule, 
+  MatNativeDateModule,
+  MatInputModule
+} from '@angular/material';
+
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { RouterModule } from '@angular/router';
 import { SuccessModalComponent } from './components/success-modal/success-modal.component';
@@ -30,6 +43,10 @@ import { SuccessModalComponent } from './components/success-modal/success-modal.
     MatCardModule,
     MatExpansionModule,
     MatGridListModule,
+    MatFormFieldModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+    MatInputModule,
     BrowserAnimationsModule,
     //ScrollToModule.forRoot()
   ],
@@ -42,7 +59,11 @@ import { SuccessModalComponent } from './components/success-modal/success-modal.
     MatExpansionModule,
     MatTabsModule,
     MatGridListModule,
+    MatFormFieldModule,
+    MatDatepickerModule,
+    MatInputModule,
     BrowserAnimationsModule
-  ]
+  ],
+  providers: [MatDatepickerModule]
 })
 export class SharedModule { }

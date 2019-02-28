@@ -1,5 +1,5 @@
 import {Component} from '@angular/core';
-import { LoaderStateService } from 'src/app/services/loader-state.service';
+import { LoaderStateService } from 'src/app/services/state-services/loader-state.service';
 
 @Component({
     selector: 'app-loader',

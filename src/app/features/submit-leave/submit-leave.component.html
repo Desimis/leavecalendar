@@ -1,3 +1,40 @@
-<p>
-  submit-leave works!
-</p>
+<div class="container">
+  <div class="row margin-top20">
+    <div class="col">
+        <h2>Leave Submission</h2>
+    </div>
+  </div>
+  <div class="row margin-top20">
+    <div class="col">
+      * Please remember to check with your team that you are able to take leave.
+    </div>
+  </div>
+  <div class="row margin-top20">
+    <div class="col-sm-3">
+        <mat-form-field>
+          <input matInput [matDatepicker]="startDatePicker" placeholder="Start Date:" disabled>
+          <mat-datepicker-toggle matSuffix [for]="startDatePicker"></mat-datepicker-toggle>
+          <mat-datepicker #startDatePicker disabled="false"></mat-datepicker>
+        </mat-form-field>
+    </div>
+    <div class="col-sm-3">
+        <mat-form-field>
+          <input matInput [matDatepicker]="endDatePicker" placeholder="End Date:" disabled>
+          <mat-datepicker-toggle matSuffix [for]="endDatePicker"></mat-datepicker-toggle>
+          <mat-datepicker #endDatePicker disabled="false"></mat-datepicker>
+        </mat-form-field>
+    </div>
+  </div>
+  <div class="row margin-top20">
+    <div class="col">
+        <mat-form-field class="width-44">
+          <textarea matInput placeholder="Please supply a reason"></textarea>
+        </mat-form-field>
+    </div>
+  </div>
+  <div class="row margin-top20">
+    <div class="col">
+        <button mat-raised-button color="primary">Submit</button>
+    </div>
+  </div>
+</div>

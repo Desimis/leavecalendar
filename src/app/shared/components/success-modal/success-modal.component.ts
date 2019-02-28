@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { SubmissionStateService } from 'src/app/services/submission-state.service';
+import { SubmissionStateService } from 'src/app/services/state-services/submission-state.service';
 import { BaseResponse } from 'src/app/models/base-response';
 
 @Component({
