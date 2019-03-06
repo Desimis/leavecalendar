@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { LeaveService } from 'src/app/services/state-services/leave-service.service';
+import { LeaveService } from 'src/app/services/leave-service.service';
 import { LeaveSubmission } from 'src/app/models/leave-submission';
 import { BaseResponse } from 'src/app/models/base-response';
 import { Router } from '@angular/router';
@@ -15,6 +15,8 @@ export class SubmitLeaveComponent implements OnInit {
 
   submitLeaveForm: FormGroup;
   submissionSuccess: BaseResponse;
+  minDate: Date;
+  maxDate: Date;
 
   constructor(
     private fb: FormBuilder,
@@ -24,6 +26,7 @@ export class SubmitLeaveComponent implements OnInit {
     ) { }
 
   ngOnInit() {
+    this.minDate = new Date();
   }
 
   createForm() {

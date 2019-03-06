@@ -12,14 +12,14 @@
   <div class="row margin-top20">
     <div class="col-sm-3">
         <mat-form-field>
-          <input matInput [matDatepicker]="startDatePicker" placeholder="Start Date:" disabled>
+          <input matInput [matDatepicker]="startDatePicker" [min]="minDate" placeholder="Start Date:" disabled>
           <mat-datepicker-toggle matSuffix [for]="startDatePicker"></mat-datepicker-toggle>
           <mat-datepicker #startDatePicker disabled="false"></mat-datepicker>
         </mat-form-field>
     </div>
     <div class="col-sm-3">
         <mat-form-field>
-          <input matInput [matDatepicker]="endDatePicker" placeholder="End Date:" disabled>
+          <input matInput [matDatepicker]="endDatePicker" [min]="minDate" placeholder="End Date:" disabled>
           <mat-datepicker-toggle matSuffix [for]="endDatePicker"></mat-datepicker-toggle>
           <mat-datepicker #endDatePicker disabled="false"></mat-datepicker>
         </mat-form-field>
