@@ -17,13 +17,15 @@ import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
 import { NgbModalModule } from '@ng-bootstrap/ng-bootstrap';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { LoaderStateService } from './services/state-services/loader-state.service';
+import { ReviewLeaveComponent } from './features/review-leave/review-leave.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     SubmitLeaveComponent,
     CancelLeaveComponent,
-    ViewCalendarComponent
+    ViewCalendarComponent,
+    ReviewLeaveComponent
   ],
   imports: [
     BrowserModule,

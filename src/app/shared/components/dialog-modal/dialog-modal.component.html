@@ -1,8 +1,31 @@
-<h1 mat-dialog-title>{{data.title}}</h1>
-<div mat-dialog-content>
-  <p>{{data.message}}</p>
+<div *ngIf="data.dialogType == 'Warning'">
+    <h1 mat-dialog-title>{{data.title}}</h1>
+    <div mat-dialog-content>
+      <p>{{data.message}}</p>
+    </div>
+    <div mat-dialog-actions>
+      <button mat-button (click)="onNoClick()">Cancel</button>
+      <button mat-button [mat-dialog-close]="true" cdkFocusInitial>Submit</button>
+    </div>
 </div>
-<div mat-dialog-actions>
-  <button mat-button (click)="onNoClick()">Cancel</button>
-  <button mat-button [mat-dialog-close]="true" cdkFocusInitial>Submit</button>
+
+<div *ngIf="data.dialogType == 'Review'">
+    <h1 mat-dialog-title>{{data.title}}</h1>
+    <div mat-dialog-content>
+      <p>Submitted by: {{data.submittedBy}}</p>
+      <p>Submitted by: {{data.dateSubmitted}}</p>
+      <p>Reason: {{data.reason}}</p>
+      <p>From: {{data.dateFrom}}</p>
+      <p>To: {{data.dateTo}}</p>
+    </div>
+    <div mat-dialog-actions>
+      <div *ngIf="data.approvedState == 'Pending'; else viewReview">
+          <button mat-raised-button (click)="onNoClick()">Cancel</button>
+          <button mat-raised-button color="warn" [mat-dialog-close]="false" cdkFocusInitial>Deny</button>
+          <button mat-raised-button color="primary" [mat-dialog-close]="true" cdkFocusInitial>Approve</button>
+      </div>
+      <ng-template mat-dialog-actions #viewReview>
+        <button mat-raised-button color="primary" (click)="onNoClick()">Close</button>
+      </ng-template>
+    </div>
 </div>

@@ -22,7 +22,8 @@ import {
   MatSelectModule,
   MatTableModule,
   MatDialogModule,
-  MatProgressSpinnerModule
+  MatProgressSpinnerModule,
+  MatRadioModule
 } from '@angular/material';
 
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
@@ -59,6 +60,7 @@ import { DialogModalComponent } from './components/dialog-modal/dialog-modal.com
     MatTableModule,
     MatDialogModule,
     MatProgressSpinnerModule,
+    MatRadioModule,
     BrowserAnimationsModule,
     //ScrollToModule.forRoot()
   ],
@@ -79,6 +81,7 @@ import { DialogModalComponent } from './components/dialog-modal/dialog-modal.com
     MatTableModule,
     MatDialogModule,
     MatProgressSpinnerModule,
+    MatRadioModule,
     BrowserAnimationsModule
   ],
   providers: [MatDatepickerModule],

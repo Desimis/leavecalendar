@@ -16,11 +16,23 @@ export class LeaveService {
     return this.http.post<BaseResponse>("", leaveSubmission)
   }
 
-  cancelLeave(leaveId: number) {
-    return this.http.post<BaseResponse>("", leaveId);
+  cancelLeave(leaveEventId: number) {
+    return this.http.post<BaseResponse>("", leaveEventId);
+  }
+
+  approveLeave(leaveEventId: number) {
+    return this.http.post<BaseResponse>("", leaveEventId);
+  }
+
+  declineLeave(leaveEventId: number) {
+    return this.http.post<BaseResponse>("", leaveEventId);
   }
 
   getUserCurrentAndPendingLeaveEvents(userId: number) {
     return this.http.post<LeaveEvent[]>("", userId);
+  }
+
+  getPendingLeaveEvents() {
+    return this.http.get<LeaveEvent[]>("");
   }
 }

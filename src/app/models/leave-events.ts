@@ -8,4 +8,5 @@ export interface LeaveEvent {
     ApprovedBy: string;
     ApprovedState: string;
     AllDay: boolean;
+    Reason: string;
 }

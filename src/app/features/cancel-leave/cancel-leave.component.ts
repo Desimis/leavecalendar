@@ -34,7 +34,7 @@ export class CancelLeaveComponent implements OnInit {
     this.selectedLeaveToBeCancelled = leaveEvent;
     const dialogRef = this.dialog.open(DialogModalComponent, {
       width: '250px',
-      data: {title: "Cancel Leave", message: "Are you sure you want to cancel this leave?"}
+      data: {title: "Cancel Leave", message: "Are you sure you want to cancel this leave?", dialogType: "Warning"}
     });
 
     dialogRef.afterClosed().subscribe(result => {
@@ -62,7 +62,8 @@ export class CancelLeaveComponent implements OnInit {
             SubmittedBy: "Christian",
             UserId: "1",
             DateSubmitted: new Date().toDateString(),
-            ApprovedState: "Pending"
+            ApprovedState: "Pending",
+            Reason: ""
           },
           {
             LeaveEventId: 4,
@@ -73,7 +74,8 @@ export class CancelLeaveComponent implements OnInit {
             SubmittedBy: "Christian",
             UserId: "1",
             DateSubmitted: new Date().toDateString(),
-            ApprovedState: "Approved"
+            ApprovedState: "Approved",
+            Reason: ""
           });
         }
 
