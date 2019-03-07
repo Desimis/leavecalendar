@@ -23,7 +23,7 @@ import {
   CalendarView
 } from 'angular-calendar';
 import { CalendarService } from 'src/app/services/calendar-service.service';
-import { LeaveEvents } from 'src/app/models/calendar-events';
+import { LeaveEvent } from 'src/app/models/leave-events';
 
 const colors: any = {
   red: {
@@ -77,7 +77,7 @@ export class ViewCalendarComponent {
   ];
 
   refresh: Subject<any> = new Subject();
-  leaveEvents: LeaveEvents[];
+  leaveEvents: LeaveEvent[];
   events: CalendarEvent[] = [
     // {
     //   start: subDays(startOfDay(new Date()), 1),
@@ -126,8 +126,8 @@ export class ViewCalendarComponent {
       () => {
         this.leaveEvents.forEach(leaveEvent => {
           this.events.push({
-            start: leaveEvent.DateFrom,
-            end: leaveEvent.DateTo,
+            start: new Date(leaveEvent.DateFrom),
+            end: new Date(leaveEvent.DateTo),
             title: leaveEvent.SubmittedBy + 'annual leave',
             color: colors.blue,
             actions: this.actions,

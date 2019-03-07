@@ -1,3 +1,42 @@
-<p>
-  cancel-leave works!
-</p>
+<div class="container">
+    <div class="row margin-top20">
+      <div class="col">
+          <h2>Cancel Leave</h2>
+      </div>
+    </div>
+    <div class="row margin-top20">
+        <table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8" *ngIf="dataSource && dataSource.data.length > 0; else noDataFound">
+          <ng-container matColumnDef="DateSubmitted">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Date Submitted </th>
+            <td mat-cell *matCellDef="let item"> {{item.DateSubmitted}} </td>
+          </ng-container>
+        
+          <ng-container matColumnDef="DateFrom">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Date From </th>
+            <td mat-cell *matCellDef="let item"> {{item.DateFrom}} </td>
+          </ng-container>
+        
+          <ng-container matColumnDef="DateTo">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Date To </th>
+            <td mat-cell *matCellDef="let item"> {{item.DateTo}} </td>
+          </ng-container>
+        
+          <ng-container matColumnDef="ApprovedState">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Current State </th>
+            <td mat-cell *matCellDef="let item"> {{item.ApprovedState}} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="Cancel">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Cancel </th>
+            <td mat-cell *matCellDef="let item"><button mat-raised-button color="warn" (click)="openDialog(item)">Cancel Leave</button></td>
+          </ng-container>
+          
+          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        </table>
+        <ng-template #noDataFound>
+            <div class="col"><strong>No Data Found</strong></div>
+        </ng-template>
+    </div>
+</div>
+  

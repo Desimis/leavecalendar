@@ -1,4 +1,4 @@
-@import '@angular/material/prebuilt-themes/deeppurple-amber.css';
+@import '@angular/material/prebuilt-themes/indigo-pink.css';
 @import "../node_modules/angular-calendar/css/angular-calendar.css";
 
 .fill-remaining-space {
@@ -19,4 +19,17 @@ body {
 
 .width-44 {
     width: 44%;
+}
+
+.form-warning {
+    color: red;
+    font-size: 12px;
+}
+
+table {
+    width: 100%;
+}
+  
+th.mat-sort-header-sorted {
+    color: black;
 }

@@ -3,4 +3,6 @@ export interface LeaveSubmission {
     Reason: string;
     DateFrom: string;
     DateTo: string;
+    AllDay: boolean;
+    LeaveTypeId: number;
 }

@@ -17,12 +17,17 @@ import {
   MatFormFieldModule, 
   MatDatepickerModule, 
   MatNativeDateModule,
-  MatInputModule
+  MatInputModule,
+  MatCheckboxModule,
+  MatSelectModule,
+  MatTableModule,
+  MatDialogModule,
 } from '@angular/material';
 
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { RouterModule } from '@angular/router';
 import { SuccessModalComponent } from './components/success-modal/success-modal.component';
+import { DialogModalComponent } from './components/dialog-modal/dialog-modal.component';
 
 //import { ScrollToModule } from '@nicky-lenaers/ngx-scroll-to';
 
@@ -33,6 +38,7 @@ import { SuccessModalComponent } from './components/success-modal/success-modal.
     FooterNavComponent,
     LoaderComponent,
     SuccessModalComponent,
+    DialogModalComponent,
   ],
   imports: [
     CommonModule,
@@ -47,6 +53,10 @@ import { SuccessModalComponent } from './components/success-modal/success-modal.
     MatDatepickerModule,
     MatNativeDateModule,
     MatInputModule,
+    MatCheckboxModule,
+    MatSelectModule,
+    MatTableModule,
+    MatDialogModule,
     BrowserAnimationsModule,
     //ScrollToModule.forRoot()
   ],
@@ -62,8 +72,13 @@ import { SuccessModalComponent } from './components/success-modal/success-modal.
     MatFormFieldModule,
     MatDatepickerModule,
     MatInputModule,
+    MatCheckboxModule,
+    MatSelectModule,
+    MatTableModule,
+    MatDialogModule,
     BrowserAnimationsModule
   ],
-  providers: [MatDatepickerModule]
+  providers: [MatDatepickerModule],
+  entryComponents: [DialogModalComponent]
 })
 export class SharedModule { }

@@ -9,32 +9,63 @@
       * Please remember to check with your team that you are able to take leave.
     </div>
   </div>
-  <div class="row margin-top20">
-    <div class="col-sm-3">
+  <form [formGroup]="submitLeaveForm" (ngSubmit)="submitForm()">
+    <div class="row margin-top20">
+      <div class="col-sm-3">
+          <mat-form-field>
+            <input formControlName="dateFrom" (ngModelChange)="updateDateToMinDate()" matInput [matDatepicker]="startDatePicker" [min]="minDate" placeholder="Start Date:">
+            <mat-datepicker-toggle matSuffix [for]="startDatePicker"></mat-datepicker-toggle>
+            <mat-datepicker #startDatePicker disabled="false"></mat-datepicker>
+          </mat-form-field>
+          <mat-error *ngIf="submitLeaveForm.controls['dateFrom'].touched && submitLeaveForm.controls['dateFrom'].errors">
+            Please select a valid start date.
+          </mat-error>
+      </div>
+      <div class="col-sm-3">
+          <mat-form-field>
+            <input formControlName="dateTo" matInput [matDatepicker]="endDatePicker" [min]="dateToMinDate" placeholder="End Date:">
+            <mat-datepicker-toggle matSuffix [for]="endDatePicker"></mat-datepicker-toggle>
+            <mat-datepicker #endDatePicker disabled="false"></mat-datepicker>
+          </mat-form-field>
+          <mat-error *ngIf="submitLeaveForm.controls['dateTo'].touched && submitLeaveForm.controls['dateTo'].errors">
+            Please select a valid end date.
+          </mat-error>
+      </div>
+    </div>
+    <div class="row margin-top20">
+      <div class="col">
+          <mat-checkbox color="primary" formControlName="allDay">All day?</mat-checkbox>
+      </div>
+    </div>
+    <div class="row margin-top20">
+      <div class="col">
         <mat-form-field>
-          <input matInput [matDatepicker]="startDatePicker" [min]="minDate" placeholder="Start Date:" disabled>
-          <mat-datepicker-toggle matSuffix [for]="startDatePicker"></mat-datepicker-toggle>
-          <mat-datepicker #startDatePicker disabled="false"></mat-datepicker>
-        </mat-form-field>
+            <mat-select formControlName="leaveType" placeholder="Leave Type">
+              <!-- <mat-option value="">Leave Type</mat-option> -->
+              <mat-option *ngFor="let leaveType of leaveTypes" [value]="leaveType.id">
+                {{leaveType.description}}
+              </mat-option>
+            </mat-select>
+            <mat-error *ngIf="submitLeaveForm.controls['leaveType'].hasError('required')">
+                Please select a valid leave type.
+            </mat-error>
+          </mat-form-field>
+      </div>
     </div>
-    <div class="col-sm-3">
-        <mat-form-field>
-          <input matInput [matDatepicker]="endDatePicker" [min]="minDate" placeholder="End Date:" disabled>
-          <mat-datepicker-toggle matSuffix [for]="endDatePicker"></mat-datepicker-toggle>
-          <mat-datepicker #endDatePicker disabled="false"></mat-datepicker>
-        </mat-form-field>
+    <div class="row margin-top20">
+      <div class="col">
+          <mat-form-field class="width-44">
+            <textarea formControlName="reason" matInput placeholder="Please supply a reason"></textarea>
+          </mat-form-field>
+          <mat-error *ngIf="submitLeaveForm.controls['reason'].touched && submitLeaveForm.controls['reason'].hasError('required')">
+            Please enter a reason for your leave.
+          </mat-error>
+      </div>
     </div>
-  </div>
-  <div class="row margin-top20">
-    <div class="col">
-        <mat-form-field class="width-44">
-          <textarea matInput placeholder="Please supply a reason"></textarea>
-        </mat-form-field>
+    <div class="row margin-top20">
+      <div class="col">
+          <button mat-raised-button color="primary" type="submit">Submit</button>
+      </div>
     </div>
-  </div>
-  <div class="row margin-top20">
-    <div class="col">
-        <button mat-raised-button color="primary">Submit</button>
-    </div>
-  </div>
+  </form>
 </div>

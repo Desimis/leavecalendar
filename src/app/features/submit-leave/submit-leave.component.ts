@@ -16,7 +16,7 @@ export class SubmitLeaveComponent implements OnInit {
   submitLeaveForm: FormGroup;
   submissionSuccess: BaseResponse;
   minDate: Date;
-  maxDate: Date;
+  dateToMinDate: Date;
 
   constructor(
     private fb: FormBuilder,
@@ -26,44 +26,65 @@ export class SubmitLeaveComponent implements OnInit {
     ) { }
 
   ngOnInit() {
+    this.createForm();
     this.minDate = new Date();
+    this.dateToMinDate = new Date();
   }
 
   createForm() {
-    this.fb.group({
+    this.submitLeaveForm = this.fb.group({
       reason: ['', Validators.required],
-      dateFrom: ['', Validators.required],
-      dateTo: ['', Validators.required]
+      dateFrom: [Date, Validators.required],
+      dateTo: [Date, Validators.required],
+      allDay: [false],
+      leaveType: ['', Validators.required]
     });
   }
 
   submitForm() {
-
-    var leaveSubmission: LeaveSubmission = {
-      UserId: "",
-      Reason: this.submitLeaveForm.controls['reason'].value,
-      DateFrom: this.submitLeaveForm.controls['dateFrom'].value,
-      DateTo: this.submitLeaveForm.controls['dateTo'].value
-    }
-
-    this.leaveService.submitLeave(leaveSubmission)
-    .subscribe(
-      data => { this.submissionSuccess = data; },
-      err => { },
-      () => {
-        if(this.submissionSuccess) {
-          this.submissionState.display(this.submissionSuccess);
-          setTimeout(() => 
-          {
-            this.submissionState.finish(null);
-            if(this.submissionSuccess.success) {
-              this.router.navigate['/viewcalendar'];
-            }
-          },
-          5000);
-        }
+    if(this.submitLeaveForm.valid) {
+      var leaveSubmission: LeaveSubmission = {
+        UserId: "",
+        Reason: this.submitLeaveForm.controls['reason'].value,
+        DateFrom: this.submitLeaveForm.controls['dateFrom'].value,
+        DateTo: this.submitLeaveForm.controls['dateTo'].value,
+        LeaveTypeId: this.submitLeaveForm.controls['leaveType'].value,
+        AllDay: this.submitLeaveForm.controls['allDay'].value
       }
-    );
+
+      this.submitLeaveForm.controls['dateTo'].touched && this.submitLeaveForm.controls['dateTo'].hasError('invalid');
+  
+      this.leaveService.submitLeave(leaveSubmission)
+      .subscribe(
+        data => { this.submissionSuccess = data; },
+        err => { },
+        () => {
+          if(this.submissionSuccess) {
+            this.submissionState.display(this.submissionSuccess);
+            setTimeout(() => 
+            {
+              this.submissionState.finish(null);
+              if(this.submissionSuccess.success) {
+                this.router.navigate['/viewcalendar'];
+              }
+            },
+            5000);
+          }
+        }
+      );
+    }
+    else {
+      Object.keys(this.submitLeaveForm.controls).forEach(key => {
+        this.submitLeaveForm.get(key).markAsTouched();
+      });
+    }
+  }
+
+  updateDateToMinDate() {
+    this.dateToMinDate = this.submitLeaveForm.controls['dateFrom'].value;
+    if(this.submitLeaveForm.controls['dateFrom'].value > this.submitLeaveForm.controls['dateTo'].value) {
+      this.submitLeaveForm.controls['dateTo'].setErrors({invalid: true});
+    }
   }
 
 }
