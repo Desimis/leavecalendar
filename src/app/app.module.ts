@@ -16,6 +16,7 @@ import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
 
 import { NgbModalModule } from '@ng-bootstrap/ng-bootstrap';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { LoaderStateService } from './services/state-services/loader-state.service';
 
 @NgModule({
   declarations: [
@@ -38,7 +39,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
       useFactory: adapterFactory
     })
   ],
-  providers: [],
+  providers: [LoaderStateService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

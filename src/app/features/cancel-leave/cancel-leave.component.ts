@@ -3,6 +3,7 @@ import { MatSort, MatTableDataSource, MatDialog } from '@angular/material';
 import { LeaveEvent } from 'src/app/models/leave-events';
 import { LeaveService } from 'src/app/services/leave-service.service';
 import { DialogModalComponent } from 'src/app/shared/components/dialog-modal/dialog-modal.component';
+import { LoaderStateService } from 'src/app/services/state-services/loader-state.service';
 
 @Component({
   selector: 'app-cancel-leave',
@@ -20,7 +21,8 @@ export class CancelLeaveComponent implements OnInit {
 
   constructor(
     private leaveService: LeaveService,
-    public dialog: MatDialog
+    public dialog: MatDialog,
+    private loaderStateService: LoaderStateService
     ) { }
 
   ngOnInit() {
@@ -43,6 +45,10 @@ export class CancelLeaveComponent implements OnInit {
   }
 
   getLeaveEventsForUser() {
+    this.loaderStateService.load();
+    this.loaderStateService.loading$.subscribe(
+      result => console.log(result)
+    );
     this.leaveService.getUserCurrentAndPendingLeaveEvents(1).subscribe(
       data => { this.leaveEvents = data; },
       err => {
@@ -72,8 +78,11 @@ export class CancelLeaveComponent implements OnInit {
         }
 
         this.dataSource.data = this.leaveEvents;
+        this.loaderStateService.finish();
       },
-      () => {}
+      () => {
+        this.loaderStateService.finish();
+      }
     );
   }
 
