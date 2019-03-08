@@ -6,7 +6,7 @@
   </div>
   <div class="row margin-top20">
     <div class="col">
-      * Please remember to check with your team that you are able to take leave.
+      <p style="color: red;"><strong>* Please remember to check with your team that you are able to take leave.</strong></p>
     </div>
   </div>
   <form [formGroup]="submitLeaveForm" (ngSubmit)="submitForm()">
@@ -42,9 +42,11 @@
         <mat-form-field>
             <mat-select formControlName="leaveType" placeholder="Leave Type">
               <!-- <mat-option value="">Leave Type</mat-option> -->
-              <mat-option *ngFor="let leaveType of leaveTypes" [value]="leaveType.id">
+              <!-- <mat-option *ngFor="let leaveType of leaveTypes" [value]="leaveType.id">
                 {{leaveType.description}}
-              </mat-option>
+              </mat-option> -->
+              <mat-option value="Annual">Annual</mat-option>
+              <mat-option value="Family">Family</mat-option>
             </mat-select>
             <mat-error *ngIf="submitLeaveForm.controls['leaveType'].hasError('required')">
                 Please select a valid leave type.

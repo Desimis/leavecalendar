@@ -121,24 +121,25 @@ export class ViewCalendarComponent {
 
   getCalendarEvents() {
     this.calendarService.getCalendarEvents().subscribe(
-      data => { this.leaveEvents = data; },
+      data => { data.forEach(leaveEvent => {
+        this.events.push({
+          start: new Date(leaveEvent.DateFrom),
+          end: new Date(leaveEvent.DateTo),
+          title: leaveEvent.SubmittedBy + 'annual leave',
+          color: colors.blue,
+          actions: this.actions,
+          allDay: leaveEvent.AllDay,
+          resizable: {
+            beforeStart: true,
+            afterEnd: true
+          },
+          draggable: false
+          })
+        }); 
+      },
       err => {},
       () => {
-        this.leaveEvents.forEach(leaveEvent => {
-          this.events.push({
-            start: new Date(leaveEvent.DateFrom),
-            end: new Date(leaveEvent.DateTo),
-            title: leaveEvent.SubmittedBy + 'annual leave',
-            color: colors.blue,
-            actions: this.actions,
-            allDay: leaveEvent.AllDay,
-            resizable: {
-              beforeStart: true,
-              afterEnd: true
-            },
-            draggable: false
-          })
-        });
+        this.refresh.next();
       }
     );
   }

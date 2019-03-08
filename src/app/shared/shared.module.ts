@@ -23,15 +23,30 @@ import {
   MatTableModule,
   MatDialogModule,
   MatProgressSpinnerModule,
-  MatRadioModule
+  MatRadioModule,
+  MAT_DATE_FORMATS,
+  DateAdapter,
+  MAT_DATE_LOCALE
 } from '@angular/material';
+  import { MomentDateAdapter } from '@angular/material-moment-adapter';
 
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { RouterModule } from '@angular/router';
 import { SuccessModalComponent } from './components/success-modal/success-modal.component';
 import { DialogModalComponent } from './components/dialog-modal/dialog-modal.component';
 
-//import { ScrollToModule } from '@nicky-lenaers/ngx-scroll-to';
+
+export const MY_FORMATS = {
+  parse: {
+    dateInput: 'LL',
+  },
+  display: {
+    dateInput: 'DD/MM/YYYY',
+    monthYearLabel: 'YYYY',
+    dateA11yLabel: 'LL',
+    monthYearA11yLabel: 'YYYY',
+  },
+};
 
 @NgModule({
   declarations: [
@@ -84,7 +99,11 @@ import { DialogModalComponent } from './components/dialog-modal/dialog-modal.com
     MatRadioModule,
     BrowserAnimationsModule
   ],
-  providers: [MatDatepickerModule],
+  providers: [
+    MatDatepickerModule, 
+    {provide: DateAdapter, useClass: MomentDateAdapter, deps: [MAT_DATE_LOCALE]},
+  {provide: MAT_DATE_FORMATS, useValue: MY_FORMATS},
+  ],
   entryComponents: [DialogModalComponent]
 })
 export class SharedModule { }
